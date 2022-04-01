@@ -1,0 +1,12 @@
+.lineItems{
+    height: 120px;
+    width: 100%;
+    background-color: rgb(24, 24, 24);
+    &-item{
+        position: relative;
+        height: 70px;
+        width: 120px;
+        background-color: whitesmoke;
+
+    }
+}

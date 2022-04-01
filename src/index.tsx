@@ -3,13 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import MainPage from "./mainPage";
+import MainPage from "./mainPage/mainPage";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { store } from "./createState";
 
 ReactDOM.render(
-    <React.StrictMode>
-        <MainPage />
-        <App />
-    </React.StrictMode>,
+    <Provider store={store}>
+        <BrowserRouter>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </BrowserRouter>
+    </Provider>,
     document.getElementById("root")
 );
 

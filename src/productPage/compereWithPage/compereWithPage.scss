@@ -1,0 +1,87 @@
+.box {
+    // position: relative;
+    height: 800px;
+    width: 260px;
+    
+    
+    max-width: 260px;
+    min-width: 260px;
+
+
+
+
+    float: left;
+
+    border-left: gray 2px solid;
+    border-right: gray 2px solid;
+    // display: inline-block;
+    // float: left;
+    background-color: red;
+}
+
+.compereWithPage {
+    &-body {
+        position: relative;
+    }
+    &-comperesCategoriesContainer {
+        position: relative;
+        // overflow: hidden;
+        height: 100%;
+        width: 100%;
+        background-color: green;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        overflow: hidden;
+
+        &-itemsBox {
+            // display: -webkit-inline-box;
+            // overflow: hidden;
+            // display: flex;
+            // position: relative;
+
+
+            position: absolute;
+            float: left;
+
+
+            //TODO: сделать автоматическим через стайл
+            width: auto;
+            width: 5000px;
+        }
+    }
+
+    &-itemsForCompereContainer {
+        position: relative;
+        // height: 900px;
+        height: 100%;
+        width: 100%;
+        background-color: #f6f6f6;
+    }
+    &-categories {
+        position: relative;
+        width: 100%;
+        background-color: #f6f6f6;
+        height: 220px;
+        // display: flex;
+        // justify-items: center;
+        // align-items: center;
+
+        height: 10em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:nth-child(2n) {
+            background-color: rgb(252, 252, 252);
+        }
+    }
+
+    background-color: red;
+}
+
+.item {
+    &-imgContainer {
+        position: relative;
+    }
+}

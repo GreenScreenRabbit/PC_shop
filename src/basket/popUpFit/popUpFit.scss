@@ -1,0 +1,36 @@
+.popUpFit {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 0%;
+    transition: opacity 1s;
+    z-index: 2;
+    &-body {
+        position: absolute;
+        z-index: 3;
+        height: 80%;
+        width: 80%;
+        left: 10%;
+        top: 10%;
+        transition: opacity 2s;
+        transition: top 2s;
+        background-color: rgb(168, 168, 168);
+    }
+    &-wallpaper {
+        position: absolute;
+        background-color: rgb(44, 44, 44);
+        opacity: 70%;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2;
+    }&-title{
+        position: relative;
+        width: 100%;
+        height: 15%;
+        background-color: rgb(172, 172, 172);
+    }
+}

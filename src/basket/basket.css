@@ -1,0 +1,24 @@
+.basket-body {
+  background-color: whitesmoke;
+  text-decoration: none;
+  color: black;
+}
+
+.basket-itemsCpntainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: #444444;
+}
+
+.basket-item {
+  position: relative;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 8px;
+  height: 180px;
+  background-color: #aaaaaa;
+  border: gray solid 2px;
+}
+/*# sourceMappingURL=basket.css.map */

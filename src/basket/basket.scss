@@ -1,0 +1,22 @@
+.basket{
+    &-body{
+        background-color: whitesmoke;
+        text-decoration:none;
+        color: black;
+    }
+    &-itemsCpntainer{
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: rgb(68, 68, 68);
+    }
+    &-item{
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 8px;
+        height: 180px;
+        background-color: rgb(170, 170, 170);
+        border: gray solid 2px;
+    }
+}

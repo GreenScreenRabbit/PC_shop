@@ -1,0 +1,67 @@
+.productPage-imgContainer {
+  position: relative;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+}
+
+.productPage-img {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.mainInformation {
+  height: 700px;
+  width: 100%;
+  padding: 20px;
+}
+
+.price-buyButton {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  font-size: 30px;
+}
+
+.price-itemsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.price-item {
+  font-size: 30px;
+}
+
+.price-container {
+  position: relative;
+  float: left;
+  margin-top: 52px;
+  height: 110px;
+  width: 100%;
+  background-color: gray;
+}
+
+.compareWith {
+  position: relative;
+  margin-top: 240px;
+  height: 110px;
+  width: 100%;
+  background-color: gray;
+}
+
+.compareWith-button {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  font-size: 30px;
+}
+/*# sourceMappingURL=productPage.css.map */

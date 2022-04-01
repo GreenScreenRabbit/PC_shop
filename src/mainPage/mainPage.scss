@@ -1,0 +1,18 @@
+.mainPage{
+    position: relative;
+    height: 100px;
+    width: 100px;
+    background-color: rgb(34, 34, 202);
+    &-2{
+        position: relative;
+        height: 100px;
+        width: 100px;
+        background-color: rgb(7, 1, 1);
+            
+    }
+}
+
+.RowMainSection{
+    height: 700px;
+    width: 100%;
+}

@@ -1,0 +1,70 @@
+.box {
+  height: 800px;
+  width: 260px;
+  max-width: 260px;
+  min-width: 260px;
+  float: left;
+  border-left: gray 2px solid;
+  border-right: gray 2px solid;
+  background-color: red;
+}
+
+.compereWithPage {
+  background-color: red;
+}
+
+.compereWithPage-body {
+  position: relative;
+}
+
+.compereWithPage-comperesCategoriesContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: green;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  overflow: hidden;
+}
+
+.compereWithPage-comperesCategoriesContainer-itemsBox {
+  position: absolute;
+  float: left;
+  width: auto;
+  width: 5000px;
+}
+
+.compereWithPage-itemsForCompereContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #f6f6f6;
+}
+
+.compereWithPage-categories {
+  position: relative;
+  width: 100%;
+  background-color: #f6f6f6;
+  height: 220px;
+  height: 10em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.compereWithPage-categories:nth-child(2n) {
+  background-color: #fcfcfc;
+}
+
+.item-imgContainer {
+  position: relative;
+}
+/*# sourceMappingURL=compereWithPage.css.map */

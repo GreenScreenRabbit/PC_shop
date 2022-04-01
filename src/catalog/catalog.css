@@ -1,0 +1,30 @@
+.catalog-body {
+  position: relative;
+  background-color: whitesmoke;
+  height: 700px;
+  width: 100%;
+  overflow: hidden;
+  -webkit-transition: height 2s;
+  transition: height 2s;
+}
+
+.catalog-filter {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #3f3f3f;
+  -webkit-transition: height 2s;
+  transition: height 2s;
+}
+
+.catalog-item {
+  position: relative;
+  width: 260px;
+  height: 300px;
+  margin: 30px;
+  margin-left: 50px;
+  float: left;
+  background-color: whitesmoke;
+  border: 2px gray solid;
+}
+/*# sourceMappingURL=catalog.css.map */

@@ -1,0 +1,19 @@
+.mainPage {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: #2222ca;
+}
+
+.mainPage-2 {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: #070101;
+}
+
+.RowMainSection {
+  height: 700px;
+  width: 100%;
+}
+/*# sourceMappingURL=mainPage.css.map */
