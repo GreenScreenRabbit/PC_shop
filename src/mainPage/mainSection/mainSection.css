@@ -20,4 +20,48 @@
   height: 40%;
   width: 50%;
 }
+
+.mainSection-box-itemsCon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: height 2s, width 2s;
+  transition: height 2s, width 2s;
+  background-color: #181818;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.mainSection-box-itemsCon:hover {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: height 2s, width 2s;
+  transition: height 2s, width 2s;
+  height: 120%;
+  width: 120%;
+  z-index: 2;
+}
+
+.mainSection-box-imgCon {
+  position: relative;
+  height: 80%;
+  width: 100%;
+}
+
+.mainSection-box-imgCon-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.mainSection-box-name {
+  position: relative;
+  height: 20%;
+  width: 100%;
+  background-color: #1d1d1d;
+}
 /*# sourceMappingURL=mainSection.css.map */

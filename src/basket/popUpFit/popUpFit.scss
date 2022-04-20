@@ -1,5 +1,5 @@
 .popUpFit {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     height: 100%;
@@ -7,6 +7,76 @@
     opacity: 0%;
     transition: opacity 1s;
     z-index: 2;
+    &-dontCareRow{
+        background-color: rgb(51, 51, 51);
+    }
+    &-dontCareBut{
+        height: 100%;
+        width: 100%;
+        font-size: 30px;
+    }
+    &-motherboardCon{
+        position: relative;
+        height: 90%;
+        overflow-y: scroll;
+        
+    }
+    &-equipment{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        &-body{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 240px;
+            width: 100%;
+            background-color: whitesmoke;            
+        }
+    }&-motherboard{
+        &-body{
+            position: relative;
+            height: 240px;
+            width: 100%;
+            background-color: whitesmoke;
+            display: block;
+        }
+        &-col{
+            height: 100%;
+            // overflow-y: scroll;
+        }
+        &-containerItems{
+            position: relative;
+        }
+        &-closeBut{
+            position: relative;
+            top: 0px;
+            height: 10%;
+            width: 100%;
+            display: flex;
+            font-size: 24px;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(180, 0, 0);
+        }
+        &-container{
+            position: relative;
+            height: 100%;
+            width: 100%;
+
+            text-align: center;
+
+        }
+    }
+    
+    &-dontFitText{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+    }
     &-body {
         position: absolute;
         z-index: 3;
@@ -17,6 +87,7 @@
         transition: opacity 2s;
         transition: top 2s;
         background-color: rgb(168, 168, 168);
+        background-color: rgb(100, 100, 100);
     }
     &-wallpaper {
         position: absolute;

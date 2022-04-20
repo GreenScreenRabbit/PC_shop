@@ -4,8 +4,7 @@
   max-width: 260px;
   min-width: 260px;
   float: left;
-  border-left: gray 2px solid;
-  border-right: gray 2px solid;
+  border-left: gray 4px solid;
   background-color: red;
 }
 

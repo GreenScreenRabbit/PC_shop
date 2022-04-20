@@ -13,10 +13,49 @@
         width: 100%;
         background-color: rgb(39, 39, 39);
     }
+
     &-box {
         position: relative;
         float: left;
         height: 40%;
         width: 50%;
+        &-itemsCon {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            transition: height 2s, width 2s;
+            background-color: #181818;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            &:hover {
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+
+                transition: height 2s, width 2s;
+                height: 120%;
+                width: 120%;
+                z-index: 2;
+            }
+        }
+
+        &-imgCon {
+            position: relative;
+            height: 80%;
+            width: 100%;
+            &-img {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+            }
+        }
+        &-name {
+            position: relative;
+            height: 20%;
+            width: 100%;
+            background-color: rgb(29, 29, 29);
+        }
     }
 }

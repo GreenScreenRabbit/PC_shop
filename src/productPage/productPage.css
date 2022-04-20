@@ -1,13 +1,44 @@
-.productPage-imgContainer {
+.productPage-imgConInLine {
+  position: absolute;
+  height: 100%;
+  -webkit-transition: margin-left 2s, margin-right 2s;
+  transition: margin-left 2s, margin-right 2s;
+  float: left;
+}
+
+.productPage-prevBut, .productPage-nextBut {
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  width: 10%;
+  opacity: 0.25;
+  z-index: 2;
+  background-color: gray;
+}
+
+.productPage-nextBut {
+  left: 90%;
+}
+
+.productPage-imgWindow {
   position: relative;
   top: 10%;
   left: 10%;
   width: 80%;
   height: 80%;
+  overflow: hidden;
+}
+
+.productPage-imgContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  float: left;
 }
 
 .productPage-img {
   position: relative;
+  height: 600px;
   height: 100%;
   width: 100%;
 }
@@ -16,6 +47,30 @@
   height: 700px;
   width: 100%;
   padding: 20px;
+}
+
+.nameLine {
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 48px;
+  margin-top: 52px;
+  height: 110px;
+  width: 100%;
+  background-color: gray;
+}
+
+.nameLine-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .price-buyButton {
@@ -52,7 +107,7 @@
 
 .compareWith {
   position: relative;
-  margin-top: 240px;
+  margin-top: 220px;
   height: 110px;
   width: 100%;
   background-color: gray;

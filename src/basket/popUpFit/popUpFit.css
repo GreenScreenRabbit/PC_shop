@@ -1,5 +1,5 @@
 .popUpFit {
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   height: 100%;
@@ -8,6 +8,89 @@
   -webkit-transition: opacity 1s;
   transition: opacity 1s;
   z-index: 2;
+}
+
+.popUpFit-dontCareRow {
+  background-color: #333333;
+}
+
+.popUpFit-dontCareBut {
+  height: 100%;
+  width: 100%;
+  font-size: 30px;
+}
+
+.popUpFit-motherboardCon {
+  position: relative;
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.popUpFit-equipment {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.popUpFit-equipment-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 240px;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.popUpFit-motherboard-body {
+  position: relative;
+  height: 240px;
+  width: 100%;
+  background-color: whitesmoke;
+  display: block;
+}
+
+.popUpFit-motherboard-col {
+  height: 100%;
+}
+
+.popUpFit-motherboard-containerItems {
+  position: relative;
+}
+
+.popUpFit-motherboard-closeBut {
+  position: relative;
+  top: 0px;
+  height: 10%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 24px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #b40000;
+}
+
+.popUpFit-motherboard-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.popUpFit-dontFitText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 24px;
 }
 
 .popUpFit-body {
@@ -22,6 +105,7 @@
   -webkit-transition: top 2s;
   transition: top 2s;
   background-color: #a8a8a8;
+  background-color: #646464;
 }
 
 .popUpFit-wallpaper {

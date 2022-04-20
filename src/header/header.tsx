@@ -7,18 +7,22 @@ const Header = () => {
     return (
         <>
             <Navbar bg="dark" expand="lg" style={{ height: "100px" }}>
-                <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                <Navbar.Brand href="">
+                    <Link to="">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPlxb6bhpxjQliUcd4nolVGOd4QEfKJKpBLA&usqp=CAU"
+                        style={{ width: "70px", height: "70px", marginLeft:"30px" }}
+                        />
+                        </Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-                        <div className="item">MDE1</div>
-                        <div className="item">MDE2</div>
-                        <div className="item">MDE3</div>
                     </Nav>
                     <Nav>
-                            <Link to={"basket"} >
+                        <Link to={"basket"}>
                             <div className="basket">basket</div>
-                            </Link>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
                 {/* </div> */}

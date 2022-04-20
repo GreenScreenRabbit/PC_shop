@@ -1,12 +1,45 @@
-.lineItems{
+.lineItems {
     height: 120px;
     width: 100%;
+    // display: flex;
+    // align-items: center;
+    // vertical-align: middle;
     background-color: rgb(24, 24, 24);
-    &-item{
+    &-itemsCon {
         position: relative;
-        height: 70px;
-        width: 120px;
-        background-color: whitesmoke;
+        // height: 100%;
+        // width: 100%;
 
+        // top: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        
+        top: 50%;
+        transform: translate(0,-50%);
+
+
+
+        // transform: translate(0, -50%);
+    }
+    &-item {
+
+        position: relative;
+
+
+        margin-left: 40px;
+        margin-right: 40px;
+
+        
+        
+        // float: left;
+        // top: 10%;
+        // height: 80%;
+        height: 70px;
+        width: 140px;
+        background-color: whitesmoke;
     }
 }

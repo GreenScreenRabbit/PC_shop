@@ -21,4 +21,74 @@
   background-color: #aaaaaa;
   border: gray solid 2px;
 }
+
+.basket-item-deleteBut {
+  top: 0px;
+  position: absolute;
+  height: 40%;
+  width: 20%;
+  background-color: #dd1b1b;
+  left: 80%;
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+}
+
+.basket-item-deleteBut:hover {
+  -webkit-transition: background-color 1s;
+  transition: background-color 1s;
+  background-color: red;
+}
+
+.basket-item-img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 40%;
+  left: 0px;
+}
+
+.basket-item-dontFitBut {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  left: 40%;
+  top: 0px;
+  background-color: orange;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.basket-item-name {
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  width: 60%;
+  height: 20%;
+  margin-left: 5%;
+}
+
+.basket-item-price {
+  position: absolute;
+  left: 40%;
+  top: 60%;
+  width: 60%;
+  height: 40%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 /*# sourceMappingURL=basket.css.map */

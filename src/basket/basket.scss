@@ -1,16 +1,16 @@
-.basket{
-    &-body{
+.basket {
+    &-body {
         background-color: whitesmoke;
-        text-decoration:none;
+        text-decoration: none;
         color: black;
     }
-    &-itemsCpntainer{
+    &-itemsCpntainer {
         position: relative;
         width: 100%;
         height: auto;
         background-color: rgb(68, 68, 68);
     }
-    &-item{
+    &-item {
         position: relative;
         width: 100%;
         box-sizing: border-box;
@@ -18,5 +18,55 @@
         height: 180px;
         background-color: rgb(170, 170, 170);
         border: gray solid 2px;
+        &-deleteBut {
+            top: 0px;
+            position: absolute;
+            height: 40%;
+            width: 20%;
+            background-color: rgb(221, 27, 27);
+            left: 80%;
+            transition: background-color 1s;
+            &:hover {
+                transition: background-color 1s;
+                background-color: red;
+            }
+        }
+        &-img {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            height: 100%;
+            width: 40%;
+            left: 0px;
+        }
+        &-dontFitBut {
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            left: 40%;
+            top: 0px;
+            background-color: orange;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        &-name {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            width: 60%;
+            height: 20%;
+            margin-left: 5%;
+        }
+        &-price {
+            position: absolute;
+            left: 40%;
+            top: 60%;
+            width: 60%;
+            height: 40%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
     }
 }

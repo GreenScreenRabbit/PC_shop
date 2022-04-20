@@ -7,12 +7,19 @@ import ProductPage from "./productPage/ProductPage";
 import Basket from "./basket/basket";
 import axios from "axios";
 import { useEffect } from "react";
+import { connect } from "react-redux";
+import { actions } from "./actions and const/actions";
+import { EquipmentsType } from "./equipmentType/equipmentType";
+import Footer from "./footer/footer";
 
-function App() {
-    // axios.get('https://my-json-server.typicode.com/GreenScreenRabbit/gamingShop-server/gamingDevices')
+type PropsType = {
+    setEquipmentsFromServer: (a: EquipmentsType) => void;
+};
 
+function App(props: PropsType) {
     useEffect(() => {
         axios.get("https://my-json-server.typicode.com/GreenScreenRabbit/PC_Shop_server/equipment").then((response) => {
+            props.setEquipmentsFromServer(response.data);
             console.log(response.data);
         });
     }, []);
@@ -25,16 +32,19 @@ function App() {
                 </Col>
                 <Col>
                     {/* <BrowserRouter> */}
-                    <Routes>
-                        <Route path="/" element={<MainPage />} />
-                        <Route path="/productPage" element={<ProductPage />} />
-                        <Route path="/basket" element={<Basket />} />
-                    </Routes>
+                        <Routes>
+                            <Route path="/" element={<MainPage />} />
+                            <Route path="/productPage" element={<ProductPage />} />
+                            <Route path="/basket" element={<Basket />} />
+                        </Routes>
                     {/* </BrowserRouter> */}
+                </Col>
+                <Col md={{ span: 12 }}>
+                    <Footer />
                 </Col>
             </Row>
         </>
     );
 }
 
-export default App;
+export default connect(null, { setEquipmentsFromServer: actions.setEquipmentsFromServer })(App);
