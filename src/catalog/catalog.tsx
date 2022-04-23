@@ -57,13 +57,14 @@ const Catalog = (props: PropsType) => {
                                                 props.setSelectedEquipment(item);
                                             }}
                                         >
-                                            {item.name}
+                                            <img src={item.imgs[0]} className="catalog-item-img" />
+                                            <div className="catalog-item-name">{item.name}</div>
+                                            <div className="catalog-item-price">PRICE : {item.price} $</div>
                                         </div>
                                     </Link>
                                 );
                             });
                         })}
-
                     </Col>
                 </Row>
             </div>

@@ -91,7 +91,7 @@ const ProductPage = (props: PropsType) => {
 
                         <Row className="compareWith">
                             <Col md={{ offset: 1, span: 4 }}>
-                                <Button className="compareWith-button">Compare With</Button>
+                                <div className="">CHAR</div>
                             </Col>
                         </Row>
                     </div>

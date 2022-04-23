@@ -11,6 +11,55 @@
   background-color: #444444;
 }
 
+.basket-row {
+  height: 240px;
+}
+
+.basket-payButCon {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.basket-payBut {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: seashell;
+}
+
+.basket-inputCon {
+  position: relative;
+  height: 50%;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.basket-inputCon-name {
+  position: relative;
+  height: 25%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.basket-inputCon-input {
+  position: relative;
+  height: 75%;
+  width: 100%;
+}
+
 .basket-item {
   position: relative;
   width: 100%;

@@ -1,0 +1,81 @@
+.popUpPay-body {
+  position: fixed;
+  z-index: 3;
+  left: 10%;
+  top: 10%;
+  height: 80%;
+  width: 80%;
+  background-color: whitesmoke;
+}
+
+.popUpPay-closeBut {
+  position: relative;
+  left: 80%;
+  height: 15%;
+  width: 20%;
+  background-color: #b30606;
+}
+
+.popUpPay-fit-img {
+  position: relative;
+  left: calc(50% - 75px);
+  height: 150px;
+  width: 150px;
+}
+
+.popUpPay-fit-text {
+  height: 20%;
+  width: 100%;
+  font-size: 36px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.popUpPay-fit-okBut {
+  left: 45%;
+  position: relative;
+  height: 75px;
+  width: 10%;
+  background-color: whitesmoke;
+}
+
+.popUpPay-wallPaper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  opacity: 0.75;
+  background-color: #4b4b4b;
+}
+
+.popUpPay-dontFit-text {
+  height: 20%;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.popUpPay-dontFit-dontCareBut {
+  left: 45%;
+  position: relative;
+  height: 20%;
+  width: 10%;
+  background-color: whitesmoke;
+}
+/*# sourceMappingURL=popUpPay.css.map */

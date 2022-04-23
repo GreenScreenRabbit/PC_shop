@@ -1,5 +1,5 @@
-.catalog{
-    &-body{
+.catalog {
+    &-body {
         position: relative;
         background-color: whitesmoke;
         // height: auto;
@@ -9,13 +9,15 @@
         overflow: hidden;
         transition: height 2s;
         // transition: max-height 2s;
-    }&-filter{
+    }
+    &-filter {
         position: relative;
         width: 100%;
         height: 100%;
         background-color: rgb(63, 63, 63);
         transition: height 2s;
-    }&-item{
+    }
+    &-item {
         position: relative;
         width: 260px;
         height: 300px;
@@ -24,6 +26,26 @@
         float: left;
         background-color: whitesmoke;
         border: 2px gray solid;
+        &-img {
+            position: relative;
+            width: 100%;
+            height: 50%;
+        }
+        &-name {
+            position: relative;
+            width: 100%;
+            height: 20%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        &-price {
+            position: relative;
+            width: 100%;
+            height: 30%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
     }
-        
 }

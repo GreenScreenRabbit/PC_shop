@@ -8,35 +8,41 @@ type PropsType = {
     setCatalogHeightBody: (height: number) => void;
     equipments: EquipmentsType | undefined;
     setEquipmentTypeForSort: (EquiType: string) => void;
-    setIsCatalogBodyOpen: (bol:boolean) => void
+    setIsCatalogBodyOpen: (bol: boolean) => void;
+    isCatalogBodyOpen: boolean;
 };
 
 const LineItems = (props: PropsType) => {
     const equipmentsNameKey: string[] = ["all"];
 
+    const [clickedNameButton, setClickedNameButton] = useState("");
     const [isOpenCatalog, setIsOpenCatalog] = useState<boolean>(false);
 
     if (isOpenCatalog) {
-        props.setIsCatalogBodyOpen(true)
+        props.setIsCatalogBodyOpen(true);
         props.setCatalogHeightBody(700);
     } else {
-        props.setIsCatalogBodyOpen(false)
         props.setCatalogHeightBody(0);
     }
 
-    // const [equipmentsNameKey, setEquipmentsNameKey] = useState<string[]>(["all"])
+    const changeButton = (nameClicked: string) => {
+        if(clickedNameButton === ""){
+            props.setIsCatalogBodyOpen(true);
 
-    // useEffect(() => {
-    //     console.log("EFECT");
-
-    //     createEquipmentsNameKey()
-    // },[props.equipments])
+        }
+        if (clickedNameButton == nameClicked) {
+            props.setIsCatalogBodyOpen(false);
+        }else{
+            props.setIsCatalogBodyOpen(true);
+        }
+        if (clickedNameButton == nameClicked && props.isCatalogBodyOpen  === false) {
+            props.setIsCatalogBodyOpen(true);
+        }
+    };
 
     const createEquipmentsNameKey = () => {
         if (props.equipments) {
             for (const key in props.equipments) {
-                console.log(`props.equipments = ${props.equipments}`);
-                console.log(`key = ${key}`);
                 equipmentsNameKey.push(key);
             }
         }
@@ -55,7 +61,8 @@ const LineItems = (props: PropsType) => {
                             <div
                                 className="lineItems-item"
                                 onClick={() => {
-                                    setIsOpenCatalog(!isOpenCatalog);
+                                    setClickedNameButton(item);
+                                    changeButton(item)
                                     props.setEquipmentTypeForSort(item);
                                 }}
                             >
@@ -71,6 +78,7 @@ const LineItems = (props: PropsType) => {
 
 const mapStateToProps = (state: RootStateOrAny) => ({
     equipments: state.mainPageState.equipments,
+    isCatalogBodyOpen: state.mainPageState.isCatalogBodyOpen,
 });
 
 export default connect(mapStateToProps, {

@@ -13,6 +13,7 @@ import {
 } from "../equipmentType/equipmentType";
 import "./basket.css";
 import PopUpFit from "./popUpFit/popUpFit";
+import PopUpPay from "./popUpPay/popUpPay";
 
 type PropsType = {
     basket: OneOfEquipmentType[];
@@ -22,25 +23,38 @@ type PropsType = {
 const Basket = (props: PropsType) => {
     const [isPopUpFitOpen, setIsPopUpFitOpen] = useState<boolean>(false);
 
-    // const dontFitEquipmentsAndMotherbpard: (OneOfEquipmentsArrayType[] |  OneOfEquipmentType )[] = [];
+    const [name, setName] = useState<string>();
+    const [lastName, setLastName] = useState<string>();
+    const [street, setStreet] = useState<string>();
+    const [house, setHouse] = useState<string>();
 
-    // const clickedUnFitEquipment: (OneOfEquipmentsArrayType | OneOfEquipmentType)[] = [];
-    // const dontFitEquipmentsAndMotherbpard: (OneOfEquipmentsArrayType | OneOfEquipmentType)[][] = [];
+    const [clickedUnFitEquipment, setClickedUnFitEquipment] = useState<(MotherboardType[] | OneOfEquipmentType)[][]>(
+        []
+    );
 
-    // const [clickedUnFitEquipment, setClickedUnFitEquipment] = useState<(OneOfEquipmentType | OneOfEquipmentsArrayType)[]>([]);
-    const [clickedUnFitEquipment, setClickedUnFitEquipment] = useState<(MotherboardType[] | OneOfEquipmentType)[][]>([]);
     const dontFitEquipmentsAndMotherbpard: (MotherboardType[] | OneOfEquipmentType)[][] = [];
+    const [isShowPopUpFit, setIsShowPopUpFit] = useState<boolean>(false);
 
-    console.log("clickedUnFitEquipment");
-    console.log(clickedUnFitEquipment);
+    let isHaveDontFitEquipment = false;
+    // const [isHaveDontFitEquipment, setIsHaveDontFitEquipment] = useState<boolean>(false)
+
+    const createJSON_PayFormula = () => {
+        const JSON_PayFormula = {
+            name,
+            lastName,
+            street,
+            house,
+        };
+        console.log(JSON_PayFormula);
+        console.log("THE END");
+        return JSON_PayFormula;
+    };
+    createJSON_PayFormula();
 
     const findDontFitInBasket = (basketArray: OneOfEquipmentType[]) => {
         const motherboards: Extract<OneOfEquipmentType, MotherboardType>[] = [];
         const processors: Extract<OneOfEquipmentType, ProcessorType>[] = [];
         const RAMS: Extract<OneOfEquipmentType, RAM_Type>[] = [];
-
-        // const dontFitRAMandMotherbpard: (MotherboardType[] | RAM_Type)[][] = [];
-        // const dontFitProcessorsAndMotherbpard: (MotherboardType[] | ProcessorType)[][] = [];
 
         const findMotherboarsVideoCardsRAMs = () => {
             basketArray.forEach((equi) => {
@@ -80,14 +94,9 @@ const Basket = (props: PropsType) => {
                     RAM.characteristics.forEach((characteristicRAM) => {
                         RAM_TechnologyFromRAM = characteristicRAM.RAM_Technology;
                     });
-
                     const unFitMotArray = motherboardComparisonCharacteristic(RAM_TechnologyFromRAM);
 
                     if (unFitMotArray.length != 0) {
-                        // dontFitRAMandMotherbpard.push([RAM, unFitMotArray]);
-
-                        const arr1 = [RAM, unFitMotArray];
-
                         dontFitEquipmentsAndMotherbpard.push([RAM, unFitMotArray]);
                     }
                 });
@@ -101,7 +110,6 @@ const Basket = (props: PropsType) => {
                     const unFitMotArray = motherboardComparisonCharacteristic(processorSocketFromProcessor);
 
                     if (unFitMotArray.length != 0) {
-                        // dontFitProcessorsAndMotherbpard.push([processor, unFitMotArray]);
                         dontFitEquipmentsAndMotherbpard.push([processor, unFitMotArray]);
                     }
                 });
@@ -111,14 +119,16 @@ const Basket = (props: PropsType) => {
         };
         findDontFitEqui();
 
+        if (dontFitEquipmentsAndMotherbpard.length != 0) {
+            isHaveDontFitEquipment = true;
+            // setIsHaveDontFitEquipment(true)
+        }
+
         console.log("dontFitEquipmentsAndMotherbpard");
         console.log(dontFitEquipmentsAndMotherbpard);
     };
 
-    const a = findDontFitInBasket(props.basket);
-
-    console.log("a");
-    console.log(a);
+    findDontFitInBasket(props.basket);
 
     return (
         <>
@@ -127,20 +137,71 @@ const Basket = (props: PropsType) => {
                     <Col md={{ span: 10, offset: 1 }}>
                         <Row>
                             <Col md={8}>
-                                <div
-                                    onClick={() => {
-                                        setIsPopUpFitOpen(true);
-                                    }}
-                                    style={{
-                                        height: "100px",
-                                        width: "100px",
-                                        position: "relative",
-                                        backgroundColor: "green",
-                                    }}
-                                >
-                                    vvvv
-                                </div>
-                                8
+                                <Row className="basket-row">
+                                    <Col>
+                                        <div className="basket-inputCon">
+                                            <div className="basket-inputCon-name">FIRST NAME</div>
+                                            <input
+                                                type="text"
+                                                className="basket-inputCon-input"
+                                                onChange={(e) => {
+                                                    setName(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </Col>
+                                    <Col>
+                                        <div className="basket-inputCon">
+                                            <div className="basket-inputCon-name">LASTNAME</div>
+                                            <input
+                                                type="text"
+                                                className="basket-inputCon-input"
+                                                onChange={(e) => {
+                                                    setLastName(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row className="basket-row">
+                                    <Col>
+                                        <div className="basket-inputCon">
+                                            <div className="basket-inputCon-name">STREET</div>
+                                            <input
+                                                type="text"
+                                                className="basket-inputCon-input"
+                                                onChange={(e) => {
+                                                    setStreet(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </Col>
+                                    <Col>
+                                        <div className="basket-inputCon">
+                                            <div className="basket-inputCon-name">HOUSE</div>
+                                            <input
+                                                type="text"
+                                                className="basket-inputCon-input"
+                                                onChange={(e) => {
+                                                    setHouse(e.target.value);
+                                                }}
+                                            />
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <Row className="basket-row">
+                                    <Col md={{ span: 2, offset: 5 }}>
+                                        <button
+                                            className="basket-payBut"
+                                            onClick={() => {
+                                                setIsShowPopUpFit(true);
+                                            }}
+                                        >
+                                            PAY
+                                        </button>
+                                    </Col>
+                                    <Col></Col>
+                                </Row>
                             </Col>
                             <Col md={4}>
                                 <div className="basket-itemsCpntainer">
@@ -148,7 +209,6 @@ const Basket = (props: PropsType) => {
                                         props.basket.map((equi, index) => {
                                             let isRenderDontFit: boolean = false;
 
-                                            // const dontFitElems: (OneOfEquipmentsArrayType | OneOfEquipmentType)[] = [];
                                             const dontFitElems: (MotherboardType[] | OneOfEquipmentType)[][] = [];
 
                                             const ifRenderDontFit = () => {
@@ -158,7 +218,6 @@ const Basket = (props: PropsType) => {
                                                         if (Array.isArray(equipmentsArrayAndObject)) {
                                                         } else {
                                                             if (equipmentsArrayAndObject.name == equi.name) {
-                                                                // clickedUnFitEquipment.push(equipmentsArrayAndObject)
                                                                 sameName = true;
                                                                 isRenderDontFit = true;
                                                             }
@@ -210,8 +269,20 @@ const Basket = (props: PropsType) => {
                 </Row>
             </div>
 
-            { isPopUpFitOpen ? <PopUpFit isPopUpFitOpen={isPopUpFitOpen} clickedUnFitEquipment={clickedUnFitEquipment[0]} setIsPopUpFitOpen={setIsPopUpFitOpen} /> : null}
-             {/* <PopUpFit isPopUpFitOpen={isPopUpFitOpen} clickedUnFitEquipment={clickedUnFitEquipment[0]} setIsPopUpFitOpen={setIsPopUpFitOpen} />  */}
+            {isPopUpFitOpen ? (
+                <PopUpFit
+                    isPopUpFitOpen={isPopUpFitOpen}
+                    clickedUnFitEquipment={clickedUnFitEquipment[0]}
+                    setIsPopUpFitOpen={setIsPopUpFitOpen}
+                />
+            ) : null}
+            {isShowPopUpFit ? (
+                <PopUpPay
+                    isShowPopUpFit={isShowPopUpFit}
+                    isHaveDontFitEquipment={isHaveDontFitEquipment}
+                    setIsShowPopUpFit={setIsShowPopUpFit}
+                />
+            ) : null}
         </>
     );
 };

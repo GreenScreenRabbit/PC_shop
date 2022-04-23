@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import { connect, RootStateOrAny } from "react-redux";
+import { actions } from "../../actions and const/actions";
 import { EquipmentsType, OneOfEquipmentsArrayType, OneOfEquipmentType } from "../../equipmentType/equipmentType";
 import "./compereWithPage.css";
 
 type PropsType = {
     selectedEquipment: OneOfEquipmentType;
     equipments: EquipmentsType;
+    setSelectedEquipment: (item: OneOfEquipmentType) => void;
 };
 
 const CompereWithPage = (props: PropsType) => {
@@ -14,41 +16,38 @@ const CompereWithPage = (props: PropsType) => {
     const [mouseAfterClickPos, setMouseAfterClickPos] = useState<string>("");
     const [mouseAfterClickPosUpMouse, setMouseAfterClickPosUpMouse] = useState<string>("");
     const [marginLeftItemsBox, setMarginLeftItemsBox] = useState<number>(0);
+    const [canCkickAfterScroling, setCanCkickAfterScroling] = useState<boolean>(true);
+    const [timerScrolingId, setTimerScrolingId] = useState<NodeJS.Timeout>();
+
 
     const itemsBoxContainerRef = useRef<HTMLDivElement>(null);
     const container = useRef<HTMLDivElement>(null);
 
-    const values = Object.values(props.selectedEquipment);
-
     const characteristicsKeys: string[] = [];
 
-    // useEffect(() => {
-    //     charForRenderValueMain();
-    // }, []);
+    const checkTimerMouseDont = () => {
+        clearTimeout(timerScrolingId!);
+
+        setCanCkickAfterScroling(true);
+
+        let idTimer = setTimeout(() => {
+            setCanCkickAfterScroling(false);
+        }, 250);
+
+        setTimerScrolingId(idTimer);
+    };
 
     const takeFilteredEquipment = (equipments: EquipmentsType) => {
         const restEqui: OneOfEquipmentType[] = [];
 
         const requiredEqui: OneOfEquipmentType[] = [];
 
-        console.log("Mde");
-
         Object.entries(equipments).find(([key, value]) => {
-            console.log("key");
-            console.log(key);
-            console.log("props.selectedEquipment.typeItem");
-            console.log(props.selectedEquipment.typeItem);
-
             value.forEach((v) => {
                 if (v.typeItem === props.selectedEquipment.typeItem) {
                     requiredEqui.push(v);
                 }
             });
-
-            // if (key == props.selectedEquipment.typeItem) {
-
-            //     requiredEqui.push(value);
-            // }
         });
 
         const takeNonSelectedEqui = (requiredEqui: OneOfEquipmentType[]) => {
@@ -71,7 +70,6 @@ const CompereWithPage = (props: PropsType) => {
         props.selectedEquipment.characteristics.forEach((item) => {
             Object.keys(item).map((it) => {
                 characteristicsKeys.push(it);
-                console.log(`it = ${it}`);
             });
         });
     };
@@ -79,31 +77,15 @@ const CompereWithPage = (props: PropsType) => {
     charForRenderKeyMain();
 
     const charForRenderValueMain = (arrayEqui: OneOfEquipmentType) => {
-        // return props.selectedEquipment.characteristics.map((item) => {
-
         const valuesResult: string[] = [];
 
-        // props.selectedEquipment.characteristics.forEach((item) => {
         arrayEqui.characteristics.forEach((item) => {
-            console.log("item");
-            console.log(item);
-
             Object.values(item).map((it) => {
-                // characteristicsValue.push(it.split(","));
-
-                // valuesResult.push(it.split(","));
                 valuesResult.push(it);
-
-                console.log("it.split(", ")");
-                console.log(it.split(","));
-
-                // return it.split(",");
             });
         });
 
         return valuesResult;
-
-        // return characteristicsValue;
     };
 
     const characteristicsValue = charForRenderValueMain(props.selectedEquipment);
@@ -111,22 +93,9 @@ const CompereWithPage = (props: PropsType) => {
     const changeItemsContainerPosition = (e: React.MouseEvent) => {
         if (isMouseOnItemsContainer) {
             const betweenMouseAndEl = e.pageX - +mouseAfterClickPos;
-            // const betweenMouseAndEl = e.pageX - container.current?.getBoundingClientRect().x! - +isMouseAfterClickPos
-            // const betweenMouseAndEl = e.pageX - itemsBoxContainerRef.current?.getBoundingClientRect().x!
-            // const betweenMouseAndEl = e.pageX - +isMouseAfterClickPos;
-
-            // console.log(`betweenMouseAndEl = ${betweenMouseAndEl}`);
-
             if (betweenMouseAndEl) {
                 setMarginLeftItemsBox(betweenMouseAndEl + +mouseAfterClickPosUpMouse);
-                // setMarginLeftItemsBox(betweenMouseAndEl);
-                // itemsBoxContainerRef.current!.style.marginRight = "-" + betweenMouseAndEl.toString() + "px"
-                // itemsBoxContainerRef.current!.style.marginLeft = betweenMouseAndEl.toString() + "px";
             }
-
-            console.log(`itemsBoxContainerRef = ${itemsBoxContainerRef.current?.getBoundingClientRect().x}`);
-
-            // console.log(`e.pageX = ${e.pageX}`);
         }
     };
 
@@ -150,7 +119,6 @@ const CompereWithPage = (props: PropsType) => {
                                 <div className="compereWithPage-categories">
                                     <b>{props.selectedEquipment.name}</b>
                                 </div>
-                                {/* {charForRenderValueMain().map((item) => { */}
                                 {characteristicsValue.length != 0 ? (
                                     characteristicsValue.map((item) => {
                                         return <div className="compereWithPage-categories">{item}</div>;
@@ -167,13 +135,10 @@ const CompereWithPage = (props: PropsType) => {
                                         className="compereWithPage-comperesCategoriesContainer-itemsBox"
                                         style={{ marginLeft: marginLeftItemsBox }}
                                         onMouseDown={(e) => {
+                                            checkTimerMouseDont();
                                             setMouseAfterClickPos(e.pageX.toString());
                                             setIsMouseOnItemsContainer(true);
                                         }}
-                                        // onMouseOut={() => {
-                                        //     setIsMouseOnItemsContainer(false);
-                                        // }}
-
                                         onMouseUp={() => {
                                             setMouseAfterClickPosUpMouse(marginLeftItemsBox.toString());
                                             setIsMouseOnItemsContainer(false);
@@ -185,11 +150,16 @@ const CompereWithPage = (props: PropsType) => {
                                             changeItemsContainerPosition(e);
                                         }}
                                     >
-                                        {/* TODO: end restEquiForCompere */}
-
                                         {restEquiForCompere.map((equi) => {
                                             return (
-                                                <div className="box">
+                                                <div
+                                                    className="box"
+                                                    onClick={() => {
+                                                        if (canCkickAfterScroling) {
+                                                            props.setSelectedEquipment(equi);
+                                                        }
+                                                    }}
+                                                >
                                                     <div className="compereWithPage-categories">
                                                         <b>{equi.name}</b>
                                                     </div>
@@ -199,24 +169,8 @@ const CompereWithPage = (props: PropsType) => {
                                                 </div>
                                             );
                                         })}
-
-                                        {/* <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div>
-                                        <div className="box"></div> */}
                                     </div>
                                 </div>
-                                {/* <div className="compereWithPage-itemsForCompereContainer">2</div> */}
                             </Col>
                         </Row>
                     </Col>
@@ -231,4 +185,6 @@ const mapStateToProps = (state: RootStateOrAny) => ({
     equipments: state.mainPageState.equipments,
 });
 
-export default connect(mapStateToProps, {})(CompereWithPage);
+export default connect(mapStateToProps, {
+    setSelectedEquipment: actions.setSelectedEquipment,
+})(CompereWithPage);
