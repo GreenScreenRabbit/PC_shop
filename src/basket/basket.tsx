@@ -36,7 +36,6 @@ const Basket = (props: PropsType) => {
     const [isShowPopUpFit, setIsShowPopUpFit] = useState<boolean>(false);
 
     let isHaveDontFitEquipment = false;
-    // const [isHaveDontFitEquipment, setIsHaveDontFitEquipment] = useState<boolean>(false)
 
     const createJSON_PayFormula = () => {
         const JSON_PayFormula = {

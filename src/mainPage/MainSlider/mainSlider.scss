@@ -1,3 +1,15 @@
-.MainSlider{
+.mainSlider {
     position: relative;
+    &-img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    &-imgCon {
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }&-button{
+        background-color: gray;
+    }
 }

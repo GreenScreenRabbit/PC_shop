@@ -1,9 +1,9 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,WAAW,CAAA;EACP,QAAQ,EAAE,QAAQ;CACrB",
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,QAAQ,EAAE,QAAQ;CAarB;;AAZI,AAAD,eAAK,CAAC;EACF,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;CACd;;AACA,AAAD,kBAAQ,CAAC;EACL,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;CACd;;AAAC,AAAD,kBAAQ,CAAA;EACL,gBAAgB,EAAE,IAAI;CACzB",
     "sources": [
-        "mainSlider.scss"
+        "MainSlider.scss"
     ],
     "names": [],
-    "file": "mainSlider.css"
+    "file": "MainSlider.css"
 }

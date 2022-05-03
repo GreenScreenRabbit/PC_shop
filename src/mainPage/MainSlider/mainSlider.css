@@ -1,4 +1,20 @@
-.MainSlider {
+.mainSlider {
   position: relative;
 }
-/*# sourceMappingURL=mainSlider.css.map */
+
+.mainSlider-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.mainSlider-imgCon {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.mainSlider-button {
+  background-color: gray;
+}
+/*# sourceMappingURL=MainSlider.css.map */
