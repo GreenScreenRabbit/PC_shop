@@ -17,8 +17,6 @@ const PopUpFit = (props: PropsType) => {
         setIsShowBody(true);
     }, []);
 
-    console.log("props.clickedUnFitEquipment");
-    console.log(props.clickedUnFitEquipment);
 
     const motherboards: MotherboardType[] = [];
     let dontFitEquipment: OneOfEquipmentType | undefined;
@@ -31,7 +29,6 @@ const PopUpFit = (props: PropsType) => {
                         motherboards.push(motherboard);
                     });
                 } else {
-                    // setDontFitEquipment(equipment);
                     dontFitEquipment = equipment;
                 }
             });
@@ -42,14 +39,18 @@ const PopUpFit = (props: PropsType) => {
         <div
             className="popUpFit"
             style={{ opacity: isShowBody ? "100%" : "0%" }}
-            // style={{ opacity: props.isPopUpFitOpen ? "100%" : "0%", height: props.isPopUpFitOpen ? "100%" : "0%" }}
         >
             <div className="popUpFit-wallpaper"></div>
             <div className="popUpFit-body">
                 <Row style={{ height: "85%", overflow: "hidden" }}>
                     <Col md={{ span: 5 }}>
                         <div className="popUpFit-equipment">
-                            <div className="popUpFit-equipment-body">{dontFitEquipment!.name}</div>
+                            <div className="popUpFit-equipment-body">
+                                <div className="popUpFit-equipment-body-imgCon">
+                                    <img src={dontFitEquipment!.imgs[0]} className="popUpFit-equipment-body-img" />
+                                </div>
+                                <div className="popUpFit-equipment-body-name">{dontFitEquipment!.name}</div>
+                            </div>
                         </div>
                     </Col>
                     <Col md={{ span: 2 }} style={{ height: "100%" }}>
@@ -65,12 +66,14 @@ const PopUpFit = (props: PropsType) => {
                         </div>
                         <div className="popUpFit-motherboardCon">
                             <div className="popUpFit-motherboard-container">
-                                <div className="popUpFit-motherboard-body"></div>
-                                <div className="popUpFit-motherboard-body"></div>
-                                <div className="popUpFit-motherboard-body"></div>
-                                <div className="popUpFit-motherboard-body"></div>
-                                <div className="popUpFit-motherboard-body"></div>
-                                <div className="popUpFit-motherboard-body"></div>
+                                {motherboards.map((motherboard) => {
+                                    return <div className="popUpFit-motherboard-body">
+                                        <div className="popUpFit-motherboard-body-imgCon">
+                                            <img src={motherboard.imgs[0]} className="popUpFit-motherboard-body-img" />
+                                        </div>
+                                        <div className="popUpFit-motherboard-body-name">{motherboard.name}</div>
+                                        </div>;
+                                })}
                             </div>
                         </div>
                     </Col>

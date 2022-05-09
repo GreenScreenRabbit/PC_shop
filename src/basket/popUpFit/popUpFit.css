@@ -43,12 +43,57 @@
   background-color: whitesmoke;
 }
 
+.popUpFit-equipment-body-imgCon {
+  top: 0px;
+  position: absolute;
+  width: 40%;
+  height: 100%;
+}
+
+.popUpFit-equipment-body-img {
+  top: 0px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.popUpFit-equipment-body-name {
+  top: 0px;
+  left: 40%;
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  font-size: 24px;
+}
+
 .popUpFit-motherboard-body {
   position: relative;
   height: 240px;
   width: 100%;
   background-color: whitesmoke;
   display: block;
+}
+
+.popUpFit-motherboard-body-imgCon {
+  top: 0px;
+  position: absolute;
+  width: 40%;
+  height: 100%;
+}
+
+.popUpFit-motherboard-body-img {
+  top: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+.popUpFit-motherboard-body-name {
+  top: 0px;
+  left: 40%;
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  font-size: 24px;
 }
 
 .popUpFit-motherboard-col {

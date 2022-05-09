@@ -16,47 +16,208 @@ type PropsType = {
 
 const Catalog = (props: PropsType) => {
     const sortedTypeEquiName: OneOfEquipmentsArrayType[] = [];
-    // const sortedAsEquiName: OneOfEquipmentsArrayType[] = [];
-    // const [sortedEquiName, setSortedEquiName] = useState<OneOfEquipmentsArrayType[]>([]);
+    const sortedEqui: OneOfEquipmentType[] = [];
+
     type KeyTitleWithoutContentType = {
         titleChar: string;
         allChar: string[];
     };
     const keyTitleWithContent: KeyTitleWithoutContentType[] = [];
 
-    const [render, setRender] = useState(false);
+    type IndexAndTotalCharNameSelectedFiltersButType = {
+        totalCharName: string;
+        index: number;
+    };
 
-    const [isOpenCatalog, setIsOpenCatalog] = useState<boolean>(false);
+    const [render, setRender] = useState(false);
+    const [selectedCharFilters, setSelectedCharFilters] = useState<string[]>([]);
+    const [indexAndTotalCharNameSelectedFiltersBut, setIndexAndTotalCharNameSelectedFiltersBut] = useState<
+        IndexAndTotalCharNameSelectedFiltersButType[]
+    >([]);
+
+
+    const toCreateFilterBut = (totalCharName: string, index: number) => {
+
+
+        let isDontHaveDupl = true
+
+        const finded = indexAndTotalCharNameSelectedFiltersBut.findIndex((obj) => {
+            if(obj.index === index && obj.totalCharName === totalCharName){
+                return true
+            }
+        })
+
+        if(finded !== -1){
+            isDontHaveDupl = false
+        }
+
+        if(isDontHaveDupl){
+            indexAndTotalCharNameSelectedFiltersBut.push({ totalCharName, index });
+        }
+
+
+
+
+    };
+
+
+    const deleteFromIndexAndTotalCharNameSelectedFiltersBut = (totalCharName: string, index: number) => {
+        const findedIndex = indexAndTotalCharNameSelectedFiltersBut.findIndex((obj) => {
+            if (obj.index === index && obj.totalCharName === totalCharName) {
+                return true;
+            }
+        });
+
+        const rest = indexAndTotalCharNameSelectedFiltersBut.splice(findedIndex + 1);
+
+        indexAndTotalCharNameSelectedFiltersBut.splice(findedIndex, findedIndex + 1);
+        rest.forEach((r) => {
+            indexAndTotalCharNameSelectedFiltersBut.push(r);
+        });
+    };
+
+    const checkFilterButton = (isAddToFilter: boolean, filterName: string) => {
+        if (isAddToFilter) {
+            const finded = selectedCharFilters.find((charFilter) => {
+                return charFilter === filterName;
+            });
+            if (finded === undefined) {
+                selectedCharFilters.push(filterName);
+            }
+        } else {
+            const finded = selectedCharFilters.findIndex((charFilter) => {
+                return charFilter === filterName;
+            });
+
+            const rest = selectedCharFilters.splice(finded + 1);
+
+            selectedCharFilters.splice(finded, finded + 1);
+            rest.forEach((r) => {
+                selectedCharFilters.push(r);
+            });
+        }
+    };
 
     const sortEquipment = () => {
-        //TODO: сортить типи и кейТитл
-        sortedTypeEquiName
-    }
+        if (selectedCharFilters.length === 0) {
+            sortedTypeEquiName.forEach((equiArr) => {
+                equiArr.forEach((equi) => {
+                    sortedEqui.push(equi);
+                });
+            });
+        }
+
+        let indexSelectedCharFilter = 0;
+
+        const filtrOnSelectedBut = () => {
+            const sorterArrayInArray = selectedCharFilters.map((selectedCharFilter, indexSelectedFilter) => {
+                indexSelectedCharFilter = indexSelectedFilter;
+
+                const sorterArray = sortedTypeEquiName.map((equiArray) => {
+                    return equiArray
+                        .map((equi) => {
+                            let isFit = false;
+
+
+                            equi.characteristics.map((char) => {
+                                const values = Object.values(char);
+
+                                values.forEach((ch) => {
+                                    if (ch === selectedCharFilter) {
+                                        isFit = true;
+                                    }
+                                });
+                            });
+
+                            if (isFit) {
+                                return equi;
+                            }
+                        })
+                        .filter((j) => j != undefined);
+                });
+
+                return sorterArray;
+            });
+
+            return sorterArrayInArray;
+        };
+
+        const forReturn: OneOfEquipmentType[] = [];
+
+        if (filtrOnSelectedBut() !== undefined) {
+            filtrOnSelectedBut().forEach((arr1) => {
+
+                arr1.forEach((arr2) => {
+                    arr2.forEach((equi) => {
+                        if (equi !== undefined) {
+                            forReturn.push(equi);
+                        }
+                    });
+                });
+            });
+        }
+
+        const deleteNonFitOfMultiFilter = () => {
+            const sortedEquiWithDuplicatesAndCount1: { [key: string]: number } = forReturn
+                .map((equi) => {
+                    let equiWithCount: any = Object.assign({ count: 1, equi: equi.name });
+                    return equiWithCount;
+                })
+                .reduce((a: any, b: any) => {
+                    a[b.equi] = (a[b.equi] || 0) + b.count;
+                    return a;
+                }, {});
+
+            const pushFitEquiTo_ForReturnEquiFitFilter = () => {
+                const fitNames: string[] = [];
+                const fitEqui: OneOfEquipmentType[] = [];
+
+                let index = 0;
+                for (const key in sortedEquiWithDuplicatesAndCount1) {
+                    const values = Object.values(sortedEquiWithDuplicatesAndCount1);
+
+                    if (values[index] === indexSelectedCharFilter + 1) {
+                        fitNames.push(key);
+                    }
+                    index++;
+                }
+
+                const findFitEquiByName = () => {
+                    forReturn.forEach((equi) => {
+                        fitNames.forEach((name) => {
+                            if (equi.name === name) {
+                                fitEqui.push(equi);
+                            }
+                        });
+                    });
+                };
+
+                findFitEquiByName();
+
+                return fitEqui;
+            };
+
+            pushFitEquiTo_ForReturnEquiFitFilter();
+
+            return pushFitEquiTo_ForReturnEquiFitFilter();
+
+        };
+
+        const deleteDupl = () => {
+            return deleteNonFitOfMultiFilter().filter((equi, i) => {
+                if (deleteNonFitOfMultiFilter().indexOf(equi) === i) {
+                    return equi;
+                }
+            });
+        };
+
+        return deleteDupl();
+    };
 
     const createFiltersButtons = () => {
         const keyTitleWithoutContent: KeyTitleWithoutContentType[] = [];
 
         const createCratTitleWithoutContentAndPushToContentWittEmptyContent = () => {
-            const returnNonDuplicateTitleCharFor_KeyTitleWithoutContentWithout = (
-                payloads: KeyTitleWithoutContentType[]
-            ) => {
-
-                let isHaveDuplicate = false;
-
-                const result: KeyTitleWithoutContentType[] = [];
-
-                keyTitleWithoutContent.forEach((keyTitle) => {
-                    payloads.forEach((payload) => {
-                        if (keyTitle.titleChar == payload.titleChar) {
-                            isHaveDuplicate = true;
-                            result.push(payload);
-                        }
-                    });
-                });
-                if (isHaveDuplicate === false) {
-                    return result;
-                }
-            };
 
             const createTitleCharWithEmptyContent = () => {
                 const result: KeyTitleWithoutContentType[] = [];
@@ -117,10 +278,7 @@ const Catalog = (props: PropsType) => {
             addToKeyTitleWithoutContent();
             addContextWithoutAllCrahFor_keyTitleWithContent();
 
-            const c = returnNonDuplicateTitleCharFor_KeyTitleWithoutContentWithout(createTitleCharWithEmptyContent());
 
-            console.log("c");
-            console.log(c);
         };
 
         const addContentForKeyTitleWithContent = () => {
@@ -140,7 +298,6 @@ const Catalog = (props: PropsType) => {
                 }
             };
 
-            const nonDuplAllChar: string[] = [];
 
             sortedTypeEquiName.forEach((equiArray) => {
                 equiArray.forEach((equi) => {
@@ -151,8 +308,6 @@ const Catalog = (props: PropsType) => {
                         values.forEach((value, valueIndex) => {
                             const payload = retuerNonDuplValue(value);
 
-                            console.log("value");
-                            console.log(value);
 
                             if (payload != undefined) {
                                 keyTitleWithContent.forEach((keyTitle) => {
@@ -166,18 +321,10 @@ const Catalog = (props: PropsType) => {
                 });
             });
 
-            console.log("nonDuplAllChar");
-            console.log(nonDuplAllChar);
         };
 
         createCratTitleWithoutContentAndPushToContentWittEmptyContent();
         addContentForKeyTitleWithContent();
-
-        console.log("keyTitleWithoutContent");
-        console.log(keyTitleWithoutContent);
-
-        console.log("keyTitleWithContent");
-        console.log(keyTitleWithContent);
     };
 
     const equipmentTypeSort = () => {
@@ -198,18 +345,81 @@ const Catalog = (props: PropsType) => {
 
     createFiltersButtons();
 
+    sortEquipment().forEach((eq) => {
+        sortedEqui.push(eq);
+    });
+
+
     return (
         <>
             <div className="catalog-body" style={{ height: props.isCatalogBodyOpen ? "700px" : "0px" }}>
                 <Row style={{ height: "100%" }}>
                     <Col md={2}>
-                        <div className="catalog-filter">
-                            <div></div>
-                        </div>
+                        <div className="catalog-filterBunCon">
+                                {keyTitleWithContent.map((keyTitle) => {
+                                    return (
+                                        <>
+                                            <div className="catalog-filter-title">{keyTitle.titleChar}</div>
+                                            {keyTitle.allChar.map((char, index) => {
+                                                indexAndTotalCharNameSelectedFiltersBut.findIndex(
+                                                    (obj) => {
+                                                        if (
+                                                            obj.index === index &&
+                                                            obj.totalCharName === keyTitle.titleChar
+                                                        ) {
+                                                            return true;
+                                                        }
+                                                    }
+                                                );
+
+                                                return (
+                                                    <div style={{ position: "relative" }}>
+                                                        <div
+                                                            className="catalog-filter-but"
+                                                            onClick={() => {
+                                                                toCreateFilterBut(keyTitle.titleChar, index);
+                                                                setRender(!render);
+                                                                checkFilterButton(true, char);
+                                                            }}
+                                                        >
+                                                            {char}
+
+                                                            {indexAndTotalCharNameSelectedFiltersBut.findIndex(
+                                                                (obj) => {
+                                                                    if (
+                                                                        obj.index === index &&
+                                                                        obj.totalCharName === keyTitle.titleChar
+                                                                    ) {
+                                                                        return true;
+                                                                    }
+                                                                }
+                                                            ) !== -1 ? (
+                                                                <div
+                                                                    className="catalog-filter-but-del"
+                                                                    onMouseUp={() => {
+                                                                        deleteFromIndexAndTotalCharNameSelectedFiltersBut(
+                                                                            keyTitle.titleChar,
+                                                                            index
+                                                                        );
+                                                                        checkFilterButton(false, char);
+                                                                        setRender(!render);
+                                                                    }}
+                                                                >
+                                                                    X
+                                                                </div>
+                                                            ) : null}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </>
+                                    );
+                                })}
+                            </div>
                     </Col>
                     <Col md={10}>
-                        {sortedTypeEquiName.map((equipmentsArray) => {
-                            return equipmentsArray.map((item) => {
+                        <div className="catalog-itemCon">
+                            {sortedEqui.map((item) => {
                                 return (
                                     <Link to="/productPage">
                                         <div
@@ -224,8 +434,8 @@ const Catalog = (props: PropsType) => {
                                         </div>
                                     </Link>
                                 );
-                            });
-                        })}
+                            })}
+                        </div>
                     </Col>
                 </Row>
             </div>

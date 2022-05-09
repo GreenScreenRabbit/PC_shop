@@ -9,34 +9,8 @@ import {
     SET_IS_CATALOG_BODY_OPEN,
     SET_SELECTED_EQUIPMENT,
 } from "./actions and const/const";
-import { EquipmentsType, OneOfEquipmentsArrayType, OneOfEquipmentType } from "./equipmentType/equipmentType";
+import { EquipmentsType, OneOfEquipmentType } from "./equipmentType/equipmentType";
 
-// type InitialStateType = {
-//     countYear: string;
-//     initialAmount: string;
-//     replenishment: string;
-//     periodicity: string;
-//     interestAccruals: string;
-// };
-
-// const initialState: InitialStateType = {
-//     countYear: "",
-//     initialAmount: "",
-//     replenishment: "",
-//     periodicity: "EVERY YEAR",
-//     interestAccruals: "",
-// };
-
-// const stateReducer = (state = initialState, action: any) => {
-//     switch (action.type) {
-//         case "COUNT_YEAR": {
-//             return { ...state, countYear: action.height };
-//         }
-
-//         default:
-//             return state;
-//     }
-// };
 
 type initialMainPageType = {
     catalogHeightBody: number;
@@ -90,6 +64,5 @@ const mainPageReducer = (state = initialMainPage, action: ActionsTypes) => {
 };
 
 export const rootReducer = combineReducers({
-    // generalState: stateReducer,
     mainPageState: mainPageReducer,
 });

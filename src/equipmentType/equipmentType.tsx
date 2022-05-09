@@ -8,7 +8,6 @@ export type EquipmentsType = {
 
 type GeneralEquipmentType<T, Y> = {
     name: string;
-    // typeItem: string;
     typeItem: Y;
     price: number;
     company: string;
@@ -73,6 +72,5 @@ type KeyOneOfEqui = keyof OneOfEquipmentsArrayType[K]
 export type OneOfEquipmentType = OneOfEquipmentsArrayType[KeyOneOfEqui]
 
 export type E = Omit<keyof OneOfEquipmentsArrayType[K],keyof []>;
-// export type OneOfEquipmentType = OneOfEquipmentsArrayType[K];
 
 

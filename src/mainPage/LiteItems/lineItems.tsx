@@ -16,14 +16,7 @@ const LineItems = (props: PropsType) => {
     const equipmentsNameKey: string[] = ["all"];
 
     const [clickedNameButton, setClickedNameButton] = useState("");
-    const [isOpenCatalog, setIsOpenCatalog] = useState<boolean>(false);
 
-    if (isOpenCatalog) {
-        props.setIsCatalogBodyOpen(true);
-        props.setCatalogHeightBody(700);
-    } else {
-        props.setCatalogHeightBody(0);
-    }
 
     const changeButton = (nameClicked: string) => {
         if(clickedNameButton === ""){

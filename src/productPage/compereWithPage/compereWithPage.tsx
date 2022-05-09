@@ -11,6 +11,7 @@ type PropsType = {
     setSelectedEquipment: (item: OneOfEquipmentType) => void;
 };
 
+
 const CompereWithPage = (props: PropsType) => {
     const [isMouseOnItemsContainer, setIsMouseOnItemsContainer] = useState<boolean>(false);
     const [mouseAfterClickPos, setMouseAfterClickPos] = useState<string>("");
@@ -18,7 +19,6 @@ const CompereWithPage = (props: PropsType) => {
     const [marginLeftItemsBox, setMarginLeftItemsBox] = useState<number>(0);
     const [canCkickAfterScroling, setCanCkickAfterScroling] = useState<boolean>(true);
     const [timerScrolingId, setTimerScrolingId] = useState<NodeJS.Timeout>();
-
 
     const itemsBoxContainerRef = useRef<HTMLDivElement>(null);
     const container = useRef<HTMLDivElement>(null);
@@ -54,8 +54,6 @@ const CompereWithPage = (props: PropsType) => {
             requiredEqui.forEach((equi) => {
                 if (equi.name != props.selectedEquipment.name) {
                     restEqui.push(equi);
-                    console.log("equi");
-                    console.log(equi);
                 }
             });
         };
@@ -94,7 +92,9 @@ const CompereWithPage = (props: PropsType) => {
         if (isMouseOnItemsContainer) {
             const betweenMouseAndEl = e.pageX - +mouseAfterClickPos;
             if (betweenMouseAndEl) {
-                setMarginLeftItemsBox(betweenMouseAndEl + +mouseAfterClickPosUpMouse);
+                if (betweenMouseAndEl + +mouseAfterClickPosUpMouse < 0) {
+                    setMarginLeftItemsBox(betweenMouseAndEl + +mouseAfterClickPosUpMouse);
+                }
             }
         }
     };

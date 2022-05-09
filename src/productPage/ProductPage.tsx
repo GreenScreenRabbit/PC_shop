@@ -28,8 +28,23 @@ const ProductPage = (props: PropsType) => {
         return 100 * selectedImg;
     };
 
-    console.log(`100 / props.selectedEquipment.imgs.length = ${100 / props.selectedEquipment.imgs.length}`);
-    console.log(`selectedImg = ${selectedImg}`);
+    const renderChar = () => {
+        const forReturn = [];
+
+        const objChar = props.selectedEquipment.characteristics[0];
+
+        let index = 0;
+        for (const key in objChar) {
+            const values = Object.values(objChar);
+
+            forReturn.push({ name: key, char: values[index] });
+
+            index++;
+        }
+
+        return forReturn;
+    };
+
 
     return (
         <>
@@ -89,9 +104,16 @@ const ProductPage = (props: PropsType) => {
                             </Col>
                         </Row>
 
-                        <Row className="compareWith">
+                        <Row className="charBigCont">
                             <Col md={{ offset: 1, span: 4 }}>
-                                <div className="">CHAR</div>
+                                {renderChar().map((ch) => {
+                                    return (
+                                        <div className="charBigCont-charCont">
+                                            <div className="charBigCont-name">{ch.name} :</div>
+                                            <div className="charBigCont-char">{ch.char}</div>
+                                        </div>
+                                    );
+                                })}
                             </Col>
                         </Row>
                     </div>

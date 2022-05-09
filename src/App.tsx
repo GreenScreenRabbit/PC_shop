@@ -31,13 +31,11 @@ function App(props: PropsType) {
                     <Header />
                 </Col>
                 <Col>
-                    {/* <BrowserRouter> */}
                         <Routes>
                             <Route path="/" element={<MainPage />} />
                             <Route path="/productPage" element={<ProductPage />} />
                             <Route path="/basket" element={<Basket />} />
                         </Routes>
-                    {/* </BrowserRouter> */}
                 </Col>
                 <Col md={{ span: 12 }}>
                     <Footer />

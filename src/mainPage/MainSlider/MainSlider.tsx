@@ -7,71 +7,60 @@ import slider3 from "../../sliders/slider3.jpg";
 import slider4 from "../../sliders/slider4.jpg";
 import { useEffect, useState } from "react";
 
-// let slider1 =  require("'../../sliders/slider1.jpg")
-
 const MainSlider = () => {
     const [positionSlider, setPositionSlider] = useState<number>(0);
     const [intervalSliderId, setIntervalSliderId] = useState<NodeJS.Timer>();
 
-
     let isContinue = true;
-    
+
     const slidersImg: string[] = [];
     slidersImg.push(slider1, slider2, slider3, slider4);
 
-    
     const slidersImgLenght = slidersImg.length;
-
+    let count = positionSlider;
 
     const stopInterval = () => {
-        clearInterval(intervalSliderId!)
-    }
+        clearInterval(intervalSliderId!);
+    };
 
     const changePosSlider = (isNextSlider: boolean) => {
         if (isNextSlider) {
             if (slidersImgLenght <= positionSlider + 1) {
+                count = 0
                 setPositionSlider(0);
             } else {
+                count++;
                 setPositionSlider(positionSlider + 1);
             }
         } else {
             if (positionSlider - 1! < 0) {
+                count = slidersImgLenght - 1
                 setPositionSlider(slidersImgLenght - 1);
             } else {
+                count--;
                 setPositionSlider(positionSlider - 1);
             }
         }
 
-
-        stopInterval()
+        stopInterval();
         startIntervalSlider();
     };
-    
+
     const startIntervalSlider = () => {
-        
-        let count = positionSlider;
-        
         let intervalId = setInterval(() => {
-            
-            setIntervalSliderId(intervalId)
-
-
-            count++;
+            setIntervalSliderId(intervalId);
 
             if (isContinue) {
                 if (slidersImgLenght <= count + 1) {
                     setPositionSlider(0);
                     count = -1;
                 } else {
-                    setPositionSlider(count + 1);
+                    count++;
+                    setPositionSlider(count);
                 }
-            } 
+            }
         }, 5e3);
-
-        setIntervalSliderId(intervalId)
-
-        console.log("START");
-        
+        setIntervalSliderId(intervalId);
     };
 
     useEffect(() => {
@@ -80,7 +69,7 @@ const MainSlider = () => {
 
     return (
         <>
-            <Row style={{ backgroundColor: "red", height: "450px" }}>
+            <Row style={{ height: "450px" }}>
                 <Col
                     md={{ span: 2 }}
                     className="mainSlider-button"
@@ -94,6 +83,7 @@ const MainSlider = () => {
                     </div>
                 </Col>
                 <Col
+                    className="mainSlider-button"
                     md={{ span: 2 }}
                     onClick={() => {
                         changePosSlider(true);
